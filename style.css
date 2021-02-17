@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 body{
-    background: linear-gradient(90deg,rgb(8, 207, 207),rgb(56, 134, 160));
+    background: linear-gradient(90deg,#08cfcf,#3886a0);
     font-family: 'Montserrat', sans-serif;
 }
 .stop-watch{
