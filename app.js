@@ -51,3 +51,18 @@ stopBtn.addEventListener('click', () => clearInterval(interval));
 
 // Start and Stop button toggler
 const toggleBtn = () => startBtn.classList.toggle('d-none') !== stopBtn.classList.toggle('d-none');
+
+
+
+
+const hour = document.getElementById('hour');
+const minute = document.getElementById('minute');
+const second = document.getElementById('second');
+
+for (let i = 0; i < 60; i++) {
+    minute.innerHTML += `<option>${i}</option>` 
+    second.innerHTML += `<option>${i}</option>` 
+}
+for (let i = 0; i < 24; i++) {
+    hour.innerHTML += `<option>${i}</option>`  
+}
