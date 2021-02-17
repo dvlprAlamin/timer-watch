@@ -29,37 +29,17 @@ const setTimer = () => {
     seconds.innerText = second.value;
     toggleWatch();
 }
+
 // two digit updater
 const isTwoDigit = unit => unit.innerText.length === 1 && (unit.innerText = '0' + unit.innerText);
 
 startBtn.addEventListener('click', () => {
     const interval = setInterval(() => {
-        if (seconds.innerText === '00' && minutes.innerText == '00' && hours.innerText === '00') {
-            document.getElementById('watch').innerHTML = `<h2>Time Up</h2>`;
-            return;
-        }
+        if (seconds.innerText === '00' && minutes.innerText === '00' && hours.innerText === '00') watch.innerHTML = `<h2>Time Up</h2>`;
         centiSeconds.innerText++;
-
-        // seconds.innerText === '-1' && ((seconds.innerText = '59') && minutes.innerText--);
-        // clearInterval(interval);
-        // if(centiSeconds.innerText > 99){
-
-        // }
-        if (centiSeconds.innerText > 99) {
-            seconds.innerText--;
-            centiSeconds.innerText = 0;
-        }
-        // centiSeconds.innerText > 99 && seconds.innerText--;
-        // centiSeconds.innerText > 99 && (centiSeconds.innerText = 0);
-
-        if (seconds.innerText == -1) {
-            seconds.innerText = '59'
-            minutes.innerText--;
-        }
-        if (minutes.innerText == -1) {
-            minutes.innerText = '59'
-            hours.innerText--;
-        }
+        centiSeconds.innerText === '100' && ((centiSeconds.innerText = '00') && seconds.innerText--);
+        seconds.innerText === '-1' && ((seconds.innerText = '59') && minutes.innerText--);
+        minutes.innerText === '-1' && ((minutes.innerText = '59') && hours.innerText--);
         isTwoDigit(centiSeconds);
         isTwoDigit(seconds);
         isTwoDigit(minutes);
