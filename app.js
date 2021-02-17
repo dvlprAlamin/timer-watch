@@ -6,63 +6,73 @@ const startBtn = document.getElementById('start-btn');
 const stopBtn = document.getElementById('stop-btn');
 
 
+const hour = document.getElementById('hour');
+const minute = document.getElementById('minute');
+const second = document.getElementById('second');
+const setTime = document.getElementById('set-time');
+const watch = document.getElementById('watch');
 
-
+const setOption = () => {
+    for (let i = 0; i < 60; i++) {
+        (i+'').length === 1 && (i = '0' + i)
+        minute.innerHTML += `<option>${i}</option>`
+        second.innerHTML += `<option>${i}</option>`
+    }
+    for (let i = 0; i < 24; i++) {
+        (i+'').length === 1 && (i = '0' + i)
+        hour.innerHTML += `<option>${i}</option>`
+    }
+}
+const setTimer = () => {
+    hours.innerText = hour.value;
+    minutes.innerText = minute.value;
+    seconds.innerText = second.value;
+    toggleWatch();
+}
 // two digit updater
 const isTwoDigit = unit => unit.innerText.length === 1 && (unit.innerText = '0' + unit.innerText);
 
 startBtn.addEventListener('click', () => {
+    const interval = setInterval(() => {
+        if (seconds.innerText === '00' && minutes.innerText == '00' && hours.innerText === '00') {
+            document.getElementById('watch').innerHTML = `<h2>Time Up</h2>`;
+            return;
+        }
+        centiSeconds.innerText++;
 
-const interval = setInterval(() => {
-    if(seconds.innerText === '00' && minutes.innerText == '00' && hours.innerText === '00'){
-        document.getElementById('watch').innerHTML = `<h2>Time Up</h2>`;
-        return;
-    }
-    centiSeconds.innerText++;
-
-    // seconds.innerText === '-1' && ((seconds.innerText = '59') && minutes.innerText--);
+        // seconds.innerText === '-1' && ((seconds.innerText = '59') && minutes.innerText--);
         // clearInterval(interval);
-    // if(centiSeconds.innerText > 99){
+        // if(centiSeconds.innerText > 99){
 
-    // }
-    if(centiSeconds.innerText > 99){
-        seconds.innerText--;
-        centiSeconds.innerText = 0;
-    }
-    // centiSeconds.innerText > 99 && seconds.innerText--;
-    // centiSeconds.innerText > 99 && (centiSeconds.innerText = 0);
+        // }
+        if (centiSeconds.innerText > 99) {
+            seconds.innerText--;
+            centiSeconds.innerText = 0;
+        }
+        // centiSeconds.innerText > 99 && seconds.innerText--;
+        // centiSeconds.innerText > 99 && (centiSeconds.innerText = 0);
 
-    if(seconds.innerText == -1 ){
-        seconds.innerText = '59'
-        minutes.innerText--;
-    }
-    if(minutes.innerText == -1 ){
-        minutes.innerText = '59'
-        hours.innerText--;
-    }
-    isTwoDigit(centiSeconds);
-    isTwoDigit(seconds);
-    isTwoDigit(minutes);
-    isTwoDigit(hours);
-    
-}, 10);
-stopBtn.addEventListener('click', () => clearInterval(interval));
+        if (seconds.innerText == -1) {
+            seconds.innerText = '59'
+            minutes.innerText--;
+        }
+        if (minutes.innerText == -1) {
+            minutes.innerText = '59'
+            hours.innerText--;
+        }
+        isTwoDigit(centiSeconds);
+        isTwoDigit(seconds);
+        isTwoDigit(minutes);
+        isTwoDigit(hours);
+
+    }, 10);
+    stopBtn.addEventListener('click', () => clearInterval(interval));
 });
 
 // Start and Stop button toggler
 const toggleBtn = () => startBtn.classList.toggle('d-none') !== stopBtn.classList.toggle('d-none');
+const toggleWatch = () => setTime.classList.toggle('d-none') !== watch.classList.toggle('d-none');
 
 
 
 
-const hour = document.getElementById('hour');
-const minute = document.getElementById('minute');
-const second = document.getElementById('second');
-
-for (let i = 0; i < 60; i++) {
-    minute.innerHTML += `<option>${i}</option>` 
-    second.innerHTML += `<option>${i}</option>` 
-}
-for (let i = 0; i < 24; i++) {
-    hour.innerHTML += `<option>${i}</option>`  
-}

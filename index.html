@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,26 +8,34 @@
     <link rel="stylesheet" href="style.css">
     <title>Timer</title>
 </head>
-<body>
+
+<body onload="setOption()">
     <section class="stop-watch">
-        <section id="input-time">
-            <label>Hours</label>
-            <select name="" id="hour"></select>
-            <label>Minutes</label>
-            <select name="" id="minute"></select>
-            <label>Seconds</label>
-            <select name="" id="second"></select>
+        <section id="set-time">
+            <h2>Set Time</h2>
+            <div id="input-time">
+                <label>Hours</label>
+                <select name="" id="hour"></select>
+                <label>Minutes</label>
+                <select name="" id="minute"></select>
+                <label>Seconds</label>
+                <select name="" id="second"></select>
+            </div>
+            <button onclick="setTimer()" id="set-btn" class="design-btn">Set</button>
         </section>
-        <section id="watch">
+        <section id="watch" class="d-none">
             <h1>
-                <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>.<small id="centi-seconds">00</small>
-            </h1>    
+                <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>.<small
+                    id="centi-seconds">00</small>
+            </h1>
+            <div class="start-stop-btn">
+                <button onclick="toggleBtn()" id="start-btn" class="design-btn">Start</button>
+                <button onclick="toggleBtn()" id="stop-btn" class="d-none design-btn">Stop</button>
+            </div>
         </section>
-        <div class="start-stop-btn">
-            <button onclick="toggleBtn()" id="start-btn" class="">Start</button>
-            <button onclick="toggleBtn()" id="stop-btn" class="d-none">Stop</button>
-        </div>
+        
     </section>
     <script src="./app.js"></script>
 </body>
+
 </html>
