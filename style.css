@@ -14,7 +14,7 @@ body{
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    padding-top: 20vh;
     align-items: center;
 }
 #set-time, .start-stop-btn{
