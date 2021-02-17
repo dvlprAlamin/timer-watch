@@ -29,6 +29,12 @@ const setTimer = () => {
     seconds.innerText = second.value;
     toggleWatch();
 }
+const resetUnit = (unit, limit, after) => {
+    if(unit.innerText === limit){
+        unit.innerText = after;
+        unit.previousElementSibling.innerText--;
+    };
+};
 
 // two digit updater
 const isTwoDigit = unit => unit.innerText.length === 1 && (unit.innerText = '0' + unit.innerText);
@@ -37,9 +43,12 @@ startBtn.addEventListener('click', () => {
     const interval = setInterval(() => {
         if (seconds.innerText === '00' && minutes.innerText === '00' && hours.innerText === '00') watch.innerHTML = `<h2>Time Up</h2>`;
         centiSeconds.innerText++;
-        centiSeconds.innerText === '100' && ((centiSeconds.innerText = '00') && seconds.innerText--);
-        seconds.innerText === '-1' && ((seconds.innerText = '59') && minutes.innerText--);
-        minutes.innerText === '-1' && ((minutes.innerText = '59') && hours.innerText--);
+        // centiSeconds.innerText === '100' && ((centiSeconds.innerText = '00') && seconds.innerText--);
+        // seconds.innerText === '-1' && ((seconds.innerText = '59') && minutes.innerText--);
+        // minutes.innerText === '-1' && ((minutes.innerText = '59') && hours.innerText--);
+        resetUnit(centiSeconds,'100', '00')
+        resetUnit(seconds,'-1', '59')
+        resetUnit(minutes,'-1', '59')
         isTwoDigit(centiSeconds);
         isTwoDigit(seconds);
         isTwoDigit(minutes);
